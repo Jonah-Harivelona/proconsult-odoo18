@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+        <record id="email_template_relance_proconsult" model="mail.template">
+            <field name="name">Relance ProConsult Tana</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Rappel de paiement — ProConsult Tana</field>
+            <field name="email_from">{{ object.env.user.email_formatted }}</field>
+            <field name="partner_to">{{ object.id }}</field>
+            <field name="description">Template de relance simple pour les rappels de paiement clients.</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-family: 'Lucida Grande', Helvetica, Verdana, Arial, sans-serif; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px;">
+                        Bonjour <t t-out="object.name"/>,
+                        <br/><br/>
+                        Sauf erreur ou omission de notre part, nous constatons que votre compte présente un solde en attente de règlement. 
+                        Nous vous rappelons gentiment de procéder au paiement de vos factures en retard dans les plus brefs délais.
+                        <br/><br/>
+                        Si vous avez déjà effectué votre virement ces derniers jours, nous vous prions de ne pas tenir compte de ce message.
+                        <br/><br/>
+                        Restant à votre entière disposition pour toute question concernant votre dossier ou vos modalités de règlement.
+                        <br/><br/>
+                        Cordialement,
+                        <br/><br/>
+                        <strong>L'équipe ProConsult Tana</strong>
+                        <br/>
+                        <t t-if="object.env.company.email">
+                            <span style="color: #888888;"><t t-out="object.env.company.email"/></span>
+                        </t>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+</odoo>
