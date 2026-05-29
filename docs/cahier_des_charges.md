@@ -68,3 +68,37 @@ proconsult.relance (TransientModel)
 ├── date_limite : date
 ├── partner_ids : many2many → res.partner
 └── message_personnalise : text
+
+6. Bilan technique
+
+### Modules développés
+| Module | Modèle étendu/créé | Type |
+|---|---|---|
+| proconsult_partner | res.partner | Héritage |
+| proconsult_sale | sale.order | Héritage |
+| proconsult_invoice | account.move | Héritage + QWeb |
+| proconsult_relance | proconsult.relance | TransientModel |
+| proconsult_dashboard | proconsult.sale.report | Vue SQL custom |
+
+### Compétences mobilisées
+- Héritage de modèles natifs Odoo (res.partner, sale.order, account.move)
+- Création de champs custom (Selection, Date, Boolean, Many2one, Many2many)
+- Related fields entre modèles
+- Héritage de vues XML
+- Création de rapport PDF avec QWeb
+- TransientModel et wizard
+- Template email et envoi automatique
+- Vue SQL custom avec _auto = False
+- Vues analytiques pivot et graph
+- Gestion des droits d'accès ir.model.access.csv
+- Débogage PostgreSQL
+- Versioning avec Git et GitHub
+
+### Difficultés rencontrées et solutions
+| Difficulté | Solution |
+|---|---|
+| Menu non visible après création | Ajout du fichier ir.model.access.csv manquant |
+| Identifiant menu parent introuvable | Diagnostic direct via requête PostgreSQL |
+| Héritage de sale.report impossible | Création d'une vue SQL custom proconsult.sale.report |
+| Valeurs Selection en doublon | Mise à jour des données existantes en base via UPDATE SQL |
+| Champ x_type_prestation vide dans dashboard | Alignement des clés Selection en minuscule |
